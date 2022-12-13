@@ -10,7 +10,7 @@ export const DUMMY_MEETUPS = [
     description: "Going back to the Moon",
   },
   {
-    id: "m1",
+    id: "m2",
     title: "A second meetup",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/e/e7/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg",
@@ -18,7 +18,7 @@ export const DUMMY_MEETUPS = [
     description: "Somewhere atop Nepal",
   },
   {
-    id: "m1",
+    id: "m3",
     title: "A third meetup",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/8/8d/PIA08391_Epimetheus%2C_Rings_and_Titan.jpg",
