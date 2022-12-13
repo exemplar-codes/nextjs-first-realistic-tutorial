@@ -5,9 +5,9 @@ export const DUMMY_MEETUPS = [
     id: "m1",
     title: "A First meetup",
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Stanford_Oval_May_2011_panorama.jpg/800px-Stanford_Oval_May_2011_panorama.jpg",
-    address: "Stanford, California",
-    description: "Stanford University",
+      "https://upload.wikimedia.org/wikipedia/commons/c/cf/Aldrin_Looks_Back_at_Tranquility_Base_-_GPN-2000-001102.jpg",
+    address: "Tranquility Base, the Moon",
+    description: "Going back to the Moon",
   },
   {
     id: "m1",
@@ -19,7 +19,7 @@ export const DUMMY_MEETUPS = [
   },
   {
     id: "m1",
-    title: "A second meetup",
+    title: "A third meetup",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/8/8d/PIA08391_Epimetheus%2C_Rings_and_Titan.jpg",
     address: "Titan, near Saturn",
