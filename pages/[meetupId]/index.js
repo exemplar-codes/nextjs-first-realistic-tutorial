@@ -1,12 +1,8 @@
-import { useRouter } from "next/router";
 import { Fragment } from "react";
 
 import { DUMMY_MEETUPS } from "../index";
 
-function MeetupDetails() {
-  const meetupId = useRouter().query.meetupId;
-  const meetup = DUMMY_MEETUPS.find(({ id }) => id === meetupId);
-
+function MeetupDetails({ meetup }) {
   return (
     <Fragment>
       <div style={{ textAlign: "center" }}>
@@ -17,6 +13,14 @@ function MeetupDetails() {
       </div>
     </Fragment>
   );
+}
+
+export async function getServerSideProps(context) {
+  const meetupId = context.params.meetupId;
+  const meetup = DUMMY_MEETUPS.find(({ id }) => id === meetupId);
+
+  if (!meetup) return { notFound: true };
+  return { props: { meetup: meetup } };
 }
 
 export default MeetupDetails;
