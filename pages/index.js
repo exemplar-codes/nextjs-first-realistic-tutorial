@@ -33,7 +33,7 @@ function HomePage({ meetups }) {
 
 export async function getStaticProps() {
   // assume send an HTTP request to fetch data
-  return { props: { meetups: DUMMY_MEETUPS } };
+  return { props: { meetups: DUMMY_MEETUPS }, revalidate: 10 };
 }
 
 export default HomePage;
