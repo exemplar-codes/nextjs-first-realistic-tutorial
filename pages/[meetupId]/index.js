@@ -1,8 +1,17 @@
+import { useRouter } from "next/router";
 import { Fragment } from "react";
 
 import { DUMMY_MEETUPS } from "../index";
 
 function MeetupDetails({ meetup }) {
+  const router = useRouter();
+  if (router.isFallback) {
+    console.log("This is a fallback page");
+    return "Loading"; // fallback UI
+  }
+
+  console.log("This is an actual page");
+
   return (
     <Fragment>
       <div style={{ textAlign: "center" }}>
@@ -30,8 +39,8 @@ export function getStaticPaths() {
       // { params: { meetupId: "m2" } },
       { params: { meetupId: "m3" } },
     ],
-    fallback: false, // All pages built. Show 404 for other routes.
-    // fallback: true, // Not all pages built. On unlisted route request, return a fallback page, then build and cache page for it. Finally, return the built page.
+    // fallback: false, // All pages built. Show 404 for other routes.
+    fallback: true, // Not all pages built. On unlisted route request, return a fallback page, then build and cache page for it. Finally, return the built page.
     // fallback: 'blocking', // Not all pages built. On unlisted route request, build and cache page for it. Finally, return the built page.
   };
 }
