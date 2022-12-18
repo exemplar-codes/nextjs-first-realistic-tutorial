@@ -27,11 +27,12 @@ export function getStaticPaths() {
   return {
     paths: [
       { params: { meetupId: "m1" } },
-      { params: { meetupId: "m2" } },
+      // { params: { meetupId: "m2" } },
       { params: { meetupId: "m3" } },
     ],
     fallback: false, // All pages built. Show 404 for other routes.
-    // fallback: true, // Not all pages built. Build and cache pages for unmentioned routes on request
+    // fallback: true, // Not all pages built. On unlisted route request, return a fallback page, then build and cache page for it. Finally, return the built page.
+    // fallback: 'blocking', // Not all pages built. On unlisted route request, build and cache page for it. Finally, return the built page.
   };
 }
 
