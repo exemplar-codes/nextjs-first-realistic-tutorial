@@ -48,10 +48,14 @@ export async function getStaticProps() {
 
   client.close();
 
-  const allMeetups_JSON_friendly = allMeetups.map((meetup) => ({
-    ...meetup,
-    _id: meetup._id.toString(), // string - is "JSON serializable"
-  }));
+  const allMeetups_JSON_friendly = allMeetups.map(
+    ({ _id, image, title, address }) => ({
+      id: _id.toString(), // string - is "JSON serializable"
+      image,
+      title,
+      address,
+    })
+  );
 
   return {
     props: {
