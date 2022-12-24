@@ -8,7 +8,7 @@ function HomePage({ meetups }) {
   return (
     <>
       <Head>
-        <title>React Meetups</title>
+        {/* <title>React Meetups</title> */}
         <meta
           name="description"
           content="Browse a huge list of active React meetups!"
