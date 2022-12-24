@@ -1,7 +1,6 @@
-import { MongoClient } from "mongodb";
-import { Fragment } from "react";
+import { MongoClient, ObjectId } from "mongodb";
 
-import { DUMMY_MEETUPS } from "../index";
+import { Fragment } from "react";
 
 function MeetupDetails({ meetup }) {
   return (
@@ -18,10 +17,32 @@ function MeetupDetails({ meetup }) {
 
 export async function getStaticProps(context) {
   const meetupId = context.params.meetupId; // provided by getStaticPaths
-  const meetup = DUMMY_MEETUPS.find(({ id }) => id === meetupId);
 
-  if (!meetup) return { notFound: true };
-  return { props: { meetup: meetup } };
+  // const meetup = DUMMY_MEETUPS.find(({ id }) => id === meetupId);
+  const client = await MongoClient.connect(
+    `mongodb+srv://${process.env["MONGODB_DB_USERNAME"]}:${process.env["MONGODB_DB_PASSWORD"]}@cluster0.3beczsg.mongodb.net/?retryWrites=true&w=majority`
+  );
+  const db = client.db();
+  const meetupsCollection = db.collection("meetups");
+
+  const selectedMeetup = await meetupsCollection.findOne(
+    { _id: ObjectId(meetupId) } // since we get "string" converted version of _id, from getStaticPaths
+  );
+
+  client.close();
+
+  if (!selectedMeetup) return { notFound: true };
+  return {
+    props: {
+      meetup: {
+        id: selectedMeetup._id.toString(),
+        title: selectedMeetup.title,
+        description: selectedMeetup.description,
+        address: selectedMeetup.address,
+        image: selectedMeetup.image,
+      },
+    },
+  };
 }
 
 export async function getStaticPaths() {
