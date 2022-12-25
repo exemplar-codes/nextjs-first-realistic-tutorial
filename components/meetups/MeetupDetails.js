@@ -5,7 +5,8 @@ import Head from "next/head";
 
 export default function MeetupDetails({ meetup }) {
   const [loadedTitle, setLoadedTitle] = useState("");
-  useEffect(async () => {
+
+  const getAndSetUsername = async () => {
     const resp = await fetch(`https://api.github.com/users/sanjarcode`);
     const { login: username } = await resp.json();
 
@@ -14,6 +15,10 @@ export default function MeetupDetails({ meetup }) {
     setTimeout(() => {
       setLoadedTitle(username);
     }, 1000);
+  };
+
+  useEffect(() => {
+    getAndSetUsername();
   }, []);
 
   // note, the Head here overrides any Head
